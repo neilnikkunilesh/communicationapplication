@@ -7,6 +7,10 @@ import Login from "./component/Login";
 import LoginSuccess from "./component/LoginSuccess";
 import Register from "./component/Register";
 import RegistrationSuccess from "./component/RegistrationSuccess";
+import GroupChat from "./UserComponents/GroupChat";
+import ManageUsers from "./UserComponents/ManageUsers";
+import ManageDocuments from "./UserComponents/ManageDocuments";
+import Logout from "./UserComponents/Logout";
 
 export default function MyApp() {
   const router = createBrowserRouter([
@@ -21,6 +25,24 @@ export default function MyApp() {
     {
       path: "/login-success",
       element: <LoginSuccess />,
+      children: [
+        {
+          path: "group-chat",
+          element: <GroupChat />,
+        },
+        {
+          path: "manager-users",
+          element: <ManageUsers />,
+        },
+        {
+          path: "manage-documents",
+          element: <ManageDocuments />,
+        },
+        {
+          path: "logout",
+          element: <Logout />,
+        },
+      ],
     },
     {
       path: "/register",
@@ -35,11 +57,6 @@ export default function MyApp() {
   return (
     <div>
       <RouterProvider router={router}></RouterProvider>
-      {/* <Home />
-      <Login />
-      <LoginSuccess />
-      <Register />
-      <RegistrationSuccess /> */}
     </div>
   );
 }
