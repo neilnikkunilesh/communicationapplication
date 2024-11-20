@@ -8,7 +8,6 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  debugger;
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -22,16 +21,21 @@ const Login = () => {
 
     // check if email is exist in localstorage or not
     let users = JSON.parse(localStorage.getItem("users"));
-    const isUserExist = users.some(
-      (item) =>
-        item.email.toLowerCase() === email.toLowerCase() &&
-        item.password === password
-    );
+    if (users !== null) {
+      const isUserExist = users.some(
+        (item) =>
+          item.email.toLowerCase() === email.toLowerCase() &&
+          item.password === password
+      );
 
-    if (isUserExist) {
-      navigate("/login-success", { state: { email } });
+      if (isUserExist) {
+        navigate("/login-success", { state: { email } });
+        setError("");
+      } else {
+        setError("Either email or password is incorrect");
+      }
     } else {
-      setError("Either email or password is incorrect");
+      setError("User not register");
     }
   };
   return (
