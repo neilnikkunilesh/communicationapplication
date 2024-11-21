@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./RegisterModule.module.scss";
 
+import { v4 as uuidv4 } from "uuid";
+
 const Register = () => {
   const navigate = useNavigate();
 
@@ -10,6 +12,7 @@ const Register = () => {
     console.log(e.target);
 
     let user = {
+      userId: uuidv4(),
       fullName: e.target[0].value,
       email: e.target[1].value,
       password: e.target[2].value,

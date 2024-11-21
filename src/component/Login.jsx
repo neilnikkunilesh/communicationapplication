@@ -29,6 +29,11 @@ const Login = () => {
       );
 
       if (isUserExist) {
+        // store the user into loggedInUser localstorage
+        localStorage.setItem(
+          "loggedInUser",
+          JSON.stringify({ email, password })
+        );
         navigate("/login-success", { state: { email } });
         setError("");
       } else {

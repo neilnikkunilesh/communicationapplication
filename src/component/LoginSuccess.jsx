@@ -1,17 +1,38 @@
 import React, { useEffect, useState } from "react";
 import styles from "./LoginSuccessModule.module.scss";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import {
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useOutlet,
+} from "react-router-dom";
 
 const LoginSuccess = () => {
   const [showLoginMessage, setShowLoginMessage] = useState(true);
 
   const location = useLocation();
+  const navigate = useNavigate();
+  const outlet = useOutlet();
 
   const { email } = location.state || {};
 
   useEffect(() => {
-    setShowLoginMessage(false);
-  }, [location]);
+    // setShowLoginMessage(false);
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!loggedInUser) {
+      navigate("/");
+    }
+  }, [location, navigate]);
+
+  useEffect(() => {
+    if (outlet) {
+      setShowLoginMessage(false);
+    } else {
+      setShowLoginMessage(true);
+    }
+  }, [outlet]);
+
   return (
     <div className={styles.dashboardContainer}>
       <header className={styles.header}>

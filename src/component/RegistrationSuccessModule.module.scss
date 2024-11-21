@@ -1,0 +1,25 @@
+.successContainer {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 100px;
+  row-gap: 20px;
+
+  .backToLoginButton {
+    width: 20%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    // transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #000000;
+      color: white;
+    }
+  }
+}

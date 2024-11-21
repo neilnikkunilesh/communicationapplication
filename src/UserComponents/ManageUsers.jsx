@@ -4,23 +4,19 @@ import UserList from "./UserList";
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
 
-  debugger;
   useEffect(() => {
     const storeUsers = localStorage.getItem("users");
-    console.log(storeUsers);
-    debugger;
     if (storeUsers) {
       setUsers(JSON.parse(storeUsers));
     } else {
       setUsers([]);
     }
-    console.log(users);
   }, []);
 
   return (
-    <>
+    <div style={{ width: "700px" }}>
       <UserList users={users} />
-    </>
+    </div>
   );
 };
 
